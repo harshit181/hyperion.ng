@@ -53,7 +53,7 @@ bool LedDeviceWS281x::init(const QJsonObject &deviceConfig)
 				_led_string.channel[_channel].gpionum    = deviceConfig["gpio"].toInt(18);
 				_led_string.channel[_channel].count      = deviceConfig["leds"].toInt(256);
 				_led_string.channel[_channel].invert     = deviceConfig["invert"].toInt(0);
-				_led_string.channel[_channel].strip_type = (deviceConfig["rgbw"].toBool(false) ? SK6812_STRIP_GRBW : WS2811_STRIP_RGB);
+				_led_string.channel[_channel].strip_type = (deviceConfig["rgbw"].toBool(false) ? SK6812_STRIP_GRBW : (deviceConfig["grb"].toBool(false) ? WS2811_STRIP_GRB : WS2811_STRIP_RGB));
 				_led_string.channel[_channel].brightness = 255;
 
 				_led_string.channel[!_channel].gpionum = 0;
